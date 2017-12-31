@@ -1,5 +1,5 @@
 ﻿;**************************************************************
-;     STREAM DEFENSE CONTROLLER v.1.04 by Stefan Elser - www.se-development.com - email: support@se-development.com
+;     STREAM DEFENSE CONTROLLER v.1.05 by Stefan Elser - www.se-development.com - email: support@se-development.com
 ;     Copyright (c) 2016 Stefan Elser
 ;**************************************************************
 ; Version History:
@@ -9,13 +9,6 @@
 ; 1.03 | release:28.05.16 | PB v.5.31 | Author: Stefan Elser
 ; 1.04 | release:02.06.16 | PB v.5.31 | Author: Stefan Elser
 ; 1.05 | release:19.08.16 | PB v.5.42 LTS | Author: Stefan Elser
-; feel free to add your version, name or other informations here if you go on with development
-;  
-;**************************************************************
-; License:
-; Creative Commons 4.0 [https://creativecommons.org/licenses/by-nc-sa/4.0/]
-;
-; Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
 ;**************************************************************
 
 Global version.s = "1.05"
