@@ -91,7 +91,7 @@ There's also a checkbox which will activate posting all commands in this text fi
 * Bugfix: Crash when profile was changed via the "Profiles" button.
 * Some small code changes
 
-## v.1.06 (work in progress):
+## v.1.06:
 * Updated to Purebasic v.5.45 LTS.
 * Added **Altar** button.
 * Added missing options to the **?** button: !gems, !specs, !essence and !spells
@@ -101,6 +101,7 @@ There's also a checkbox which will activate posting all commands in this text fi
 * Replaced the obsolete **upgrade gem** and **switch gem** buttons with buttons to socket specific ones.
 * Updated target window (only the sorting option).
 * Updated class selection window.
+* Updated the spell window and included all new spells.
 
 # Pure Pasic Version
 

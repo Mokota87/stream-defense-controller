@@ -205,15 +205,19 @@ Enumeration ;GADGETS
   ;Priestcast
   #GADGET_FRAME_buffs
   #GADGET_FRAME_spells
-  #GADGET_BUTTON_boosttraining
   #GADGET_BUTTON_boostdamage
-  #GADGET_BUTTON_boostfreeze
-  #GADGET_BUTTON_haste
-  #GADGET_BUTTON_shield
   #GADGET_BUTTON_boostpower
-  #GADGET_BUTTON_boostrange
-  #GADGET_BUTTON_boostmeditate
-  #GADGET_BUTTON_boostarmy
+  #GADGET_BUTTON_boostbubble
+  #GADGET_BUTTON_enlighten
+  #GADGET_BUTTON_meditate
+  #GADGET_BUTTON_trial
+  #GADGET_BUTTON_powerooze
+  #GADGET_BUTTON_haste
+  #GADGET_BUTTON_armorturret
+  #GADGET_BUTTON_army
+  #GADGET_BUTTON_luck
+  #GADGET_BUTTON_unburrower
+  #GADGET_BUTTON_wisdom  
     
   ;Settings
   #GADGET_CHECKBOX_autoclose
@@ -732,9 +736,9 @@ ButtonGadget(#GADGET_BUTTON_socketonyx,185,10+y,170,25,"Socket Onyx")
 ;PRIESTCAST WINDOW
 ;******************************************
 If Val(config(6))=0
-  OpenWindow(#WINDOW_priestcast,0,0,265,315,"Priestcast ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
+  OpenWindow(#WINDOW_priestcast,0,0,265,415,"Priestcast ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
 Else
-  OpenWindow(#WINDOW_priestcast,Val(config(6)),Val(config(7)),265,315,"Priestcast ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
+  OpenWindow(#WINDOW_priestcast,Val(config(6)),Val(config(7)),265,415,"Priestcast ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
 EndIf
 StickyWindow(#WINDOW_priestcast,1)
 HideWindow(#WINDOW_priestcast,1)
@@ -742,18 +746,33 @@ HideWindow(#WINDOW_priestcast,1)
 FrameGadget(#GADGET_FRAME_buffs,5,5,WindowWidth(#WINDOW_priestcast)-10,105,"TOWER BUFFS")
 SetGadgetFont(#GADGET_FRAME_buffs,FontID(1))
 
-ButtonGadget(#GADGET_BUTTON_boostdamage,10,20,245,25,"Strength (Damage+Range) [20 Mana]",#PB_Button_Toggle)
+ButtonGadget(#GADGET_BUTTON_boostdamage,10,20,245,25,"Strength (Damage+Range) [30 Mana]",#PB_Button_Toggle)
 ButtonGadget(#GADGET_BUTTON_boostpower,10,50,245,25,"Power [30 Mana]",#PB_Button_Toggle)
-ButtonGadget(#GADGET_BUTTON_boostrange,10,80,245,25,"Focus (+30 Gem ranks) [20 Mana]",#PB_Button_Toggle)
+ButtonGadget(#GADGET_BUTTON_boostbubble,10,80,245,25,"Slow Bubble [40 Mana + 1 Orb]",#PB_Button_Toggle)
 
-FrameGadget(#GADGET_FRAME_spells,5,115,WindowWidth(#WINDOW_priestcast)-10,195,"GENERAL SPELLS")
+FrameGadget(#GADGET_FRAME_spells,5,115,WindowWidth(#WINDOW_priestcast)-10,295,"GENERAL SPELLS")
 SetGadgetFont(#GADGET_FRAME_spells,FontID(1))
-ButtonGadget(#GADGET_BUTTON_boosttraining,10,130,245,25,"Training [40 Mana]")
-ButtonGadget(#GADGET_BUTTON_boostfreeze,10,160,245,25,"Freeze [35 Mana]")
-ButtonGadget(#GADGET_BUTTON_haste,10,190,245,25,"Haste [45 Mana]")
-ButtonGadget(#GADGET_BUTTON_shield,10,220,245,25,"Shield [70 Mana]")
-ButtonGadget(#GADGET_BUTTON_boostarmy,10,250,245,25,"Army [100 Mana]")
-ButtonGadget(#GADGET_BUTTON_boostmeditate,10,280,245,25,"Meditate [75 Mana]")
+y=130
+ButtonGadget(#GADGET_BUTTON_enlighten,10,y,245,25,"Enlighten [100 Mana + 2 Orbs]")
+y+28
+ButtonGadget(#GADGET_BUTTON_meditate,10,y,245,25,"Meditate [2 Orbs]")
+y+28
+ButtonGadget(#GADGET_BUTTON_trial,10,y,245,25,"Trial [150 Mana]")
+y+28
+ButtonGadget(#GADGET_BUTTON_powerooze,10,y,245,25,"Power Ooze [55 Mana + 1 Orb]")
+y+28
+ButtonGadget(#GADGET_BUTTON_haste,10,y,245,25,"Haste [30 Mana + 0-3 Orbs]")
+y+28
+ButtonGadget(#GADGET_BUTTON_armorturret,10,y,245,25,"Armor Turret [40 Mana]")
+y+28
+ButtonGadget(#GADGET_BUTTON_army,10,y,245,25,"Army [50 Mana + 3 Orbs]")
+y+28
+ButtonGadget(#GADGET_BUTTON_luck,10,y,245,25,"Luck [90 Mana]")
+y+28
+ButtonGadget(#GADGET_BUTTON_unburrower,10,y,245,25,"Unburrower [20 Mana]")
+y+28
+ButtonGadget(#GADGET_BUTTON_wisdom,10,y,245,25,"Wisdom [10 Mana + 2 Orb]")
+y+28
 
 
 ;******************************************
@@ -958,8 +977,8 @@ Procedure Button(nr.s,gadget.i)
     If GetGadgetState(#GADGET_CHECKBOX_command)=0
       If GetGadgetState(#GADGET_BUTTON_boostdamage)=1
         Command("!hpstr"+nr+" XX")
-      ElseIf GetGadgetState(#GADGET_BUTTON_boostrange)=1
-        Command("!hpfcs"+nr+" XX")
+      ElseIf GetGadgetState(#GADGET_BUTTON_boostbubble)=1
+        Command("!hpslw"+nr+" XX")
       ElseIf GetGadgetState(#GADGET_BUTTON_boostpower)=1
         Command("!hppwr"+nr+" XX")
       Else
@@ -968,8 +987,8 @@ Procedure Button(nr.s,gadget.i)
     Else
       If GetGadgetState(#GADGET_BUTTON_boostdamage)=1
         SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpstr"+nr+" ")
-      ElseIf GetGadgetState(#GADGET_BUTTON_boostrange)=1
-        SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpfcs"+nr+" ")
+      ElseIf GetGadgetState(#GADGET_BUTTON_boostbubble)=1
+        SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpslw"+nr+" ")
       ElseIf GetGadgetState(#GADGET_BUTTON_boostpower)=1
         SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hppwr"+nr+" ")
       Else
@@ -985,7 +1004,7 @@ Procedure Button(nr.s,gadget.i)
     nr = RemoveString(nr, ".")
     If GetGadgetState(#GADGET_BUTTON_boostdamage)=1
       Drawbutton(nr,1,0,gadget,22-Len(nr)*3,16)
-    ElseIf GetGadgetState(#GADGET_BUTTON_boostrange)=1
+    ElseIf GetGadgetState(#GADGET_BUTTON_boostbubble)=1
       Drawbutton(nr,1,1,gadget,22-Len(nr)*3,16)
     ElseIf GetGadgetState(#GADGET_BUTTON_boostpower)=1
       Drawbutton(nr,1,2,gadget,22-Len(nr)*3,16)
@@ -996,7 +1015,7 @@ Procedure Button(nr.s,gadget.i)
     nr = RemoveString(nr, ".")
     If GetGadgetState(#GADGET_BUTTON_boostdamage)=1
       Drawbutton(nr,0,0,gadget,22-Len(nr)*3,15)
-    ElseIf GetGadgetState(#GADGET_BUTTON_boostrange)=1
+    ElseIf GetGadgetState(#GADGET_BUTTON_boostbubble)=1
       Drawbutton(nr,0,1,gadget,22-Len(nr)*3,15)
     ElseIf GetGadgetState(#GADGET_BUTTON_boostpower)=1
       Drawbutton(nr,0,2,gadget,22-Len(nr)*3,15)
@@ -1082,7 +1101,7 @@ Drawbuttonclass("Frostmage",0,7,#GADGET_BUTTON_frostmage,5,5,30,180,210,99)
 Drawbuttonclass("Rogue",0,7,#GADGET_BUTTON_rogue,5,5,210,0,210,99)
 Drawbuttonclass("Bard",0,7,#GADGET_BUTTON_bard,5,5,90,90,210,99)
 Drawbuttonclass("Alchemist",0,7,#GADGET_BUTTON_alchemist,5,5,20,130,130,99)
-Drawbuttonclass("HIGHPRIEST",0,7,#GADGET_BUTTON_highpriest,20,23,200,200,200,99)
+Drawbuttonclass("HIGHPRIEST",0,7,#GADGET_BUTTON_highpriest,20,19,200,200,200,99)
 
 If loadedprofiles>1
   For i.i=0 To loadedprofiles-1
@@ -1132,8 +1151,8 @@ Repeat
         Case 0:
           If GetGadgetState(#GADGET_BUTTON_priestcast)=1
           If GetGadgetState(#GADGET_BUTTON_boostdamage)=1
-            SetGadgetState(#GADGET_BUTTON_boostdamage,0)
             SetGadgetState(#GADGET_BUTTON_boostpower,1)
+            SetGadgetState(#GADGET_BUTTON_boostdamage,0)
             Drawbutton("1",0,2,#GADGET_BUTTON_1,20,15)
             Drawbutton("2",0,2,#GADGET_BUTTON_2,20,15)
             Drawbutton("3",0,2,#GADGET_BUTTON_3,20,15)
@@ -1148,7 +1167,7 @@ Repeat
             Drawbutton("12",0,2,#GADGET_BUTTON_12,17,15)
           ElseIf GetGadgetState(#GADGET_BUTTON_boostpower)=1
             SetGadgetState(#GADGET_BUTTON_boostpower,0)
-            SetGadgetState(#GADGET_BUTTON_boostrange,1)
+            SetGadgetState(#GADGET_BUTTON_boostbubble,1)
             Drawbutton("1",0,1,#GADGET_BUTTON_1,20,15)
             Drawbutton("2",0,1,#GADGET_BUTTON_2,20,15)
             Drawbutton("3",0,1,#GADGET_BUTTON_3,20,15)
@@ -1161,8 +1180,8 @@ Repeat
             Drawbutton("10",0,1,#GADGET_BUTTON_10,17,15)
             Drawbutton("11",0,1,#GADGET_BUTTON_11,17,15)
             Drawbutton("12",0,1,#GADGET_BUTTON_12,17,15)
-          ElseIf GetGadgetState(#GADGET_BUTTON_boostrange)=1
-            SetGadgetState(#GADGET_BUTTON_boostrange,0)
+          ElseIf GetGadgetState(#GADGET_BUTTON_boostbubble)=1
+            SetGadgetState(#GADGET_BUTTON_boostbubble,0)
             SetGadgetState(#GADGET_BUTTON_boostdamage,1)
             Drawbutton("1",0,0,#GADGET_BUTTON_1,20,15)
             Drawbutton("2",0,0,#GADGET_BUTTON_2,20,15)
@@ -1181,7 +1200,7 @@ Repeat
         Case 1:
           If GetGadgetState(#GADGET_BUTTON_priestcast)=1
             SetGadgetState(#GADGET_BUTTON_boostdamage,1)
-            SetGadgetState(#GADGET_BUTTON_boostrange,0)
+            SetGadgetState(#GADGET_BUTTON_boostbubble,0)
             SetGadgetState(#GADGET_BUTTON_boostpower,0)
             Drawbutton("1",0,0,#GADGET_BUTTON_1,20,15)
             Drawbutton("2",0,0,#GADGET_BUTTON_2,20,15)
@@ -1200,7 +1219,7 @@ Repeat
           If GetGadgetState(#GADGET_BUTTON_priestcast)=1
             SetGadgetState(#GADGET_BUTTON_boostdamage,0)
             SetGadgetState(#GADGET_BUTTON_boostpower,1)
-            SetGadgetState(#GADGET_BUTTON_boostrange,0)
+            SetGadgetState(#GADGET_BUTTON_boostbubble,0)
             Drawbutton("1",0,2,#GADGET_BUTTON_1,20,15)
             Drawbutton("2",0,2,#GADGET_BUTTON_2,20,15)
             Drawbutton("3",0,2,#GADGET_BUTTON_3,20,15)
@@ -1218,7 +1237,7 @@ Repeat
           If GetGadgetState(#GADGET_BUTTON_priestcast)=1
             SetGadgetState(#GADGET_BUTTON_boostpower,0)
             SetGadgetState(#GADGET_BUTTON_boostdamage,0)
-            SetGadgetState(#GADGET_BUTTON_boostrange,1)
+            SetGadgetState(#GADGET_BUTTON_boostbubble,1)
             Drawbutton("1",0,1,#GADGET_BUTTON_1,20,15)
             Drawbutton("2",0,1,#GADGET_BUTTON_2,20,15)
             Drawbutton("3",0,1,#GADGET_BUTTON_3,20,15)
@@ -1375,7 +1394,7 @@ Repeat
             HideWindow(#WINDOW_priestcast,1)
             SetGadgetState(#GADGET_BUTTON_boostdamage,0)
             SetGadgetState(#GADGET_BUTTON_boostpower,0)
-            SetGadgetState(#GADGET_BUTTON_boostrange,0)
+            SetGadgetState(#GADGET_BUTTON_boostbubble,0)
             Drawbutton("1",0,3,#GADGET_BUTTON_1,19,15)
             Drawbutton("2",0,3,#GADGET_BUTTON_2,19,15)
             Drawbutton("3",0,3,#GADGET_BUTTON_3,19,15)
@@ -1721,56 +1740,92 @@ Repeat
           
         ;PRIESTCAST:
         ;-------------  
-        Case #GADGET_BUTTON_boosttraining:
+        Case #GADGET_BUTTON_enlighten:
             If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!hpwis XX")
+              Command("!hpenl")
             Else
-              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpwis ")
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpenl ")
               If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
                 time=1
               EndIf
             EndIf
-        Case #GADGET_BUTTON_boostfreeze:
+        Case #GADGET_BUTTON_meditate:
             If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!hpfrz XX")
+              Command("!hpmdt")
             Else
-              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpfrz ")
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpmdt ")
               If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
                 time=1
               EndIf
             EndIf
-        Case #GADGET_BUTTON_shield:
+        Case #GADGET_BUTTON_trial:
             If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!hpshd XX")
+              Command("!hpchg")
             Else
-              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpshd ")
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpchg ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+        Case #GADGET_BUTTON_powerooze:
+            If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hpspw")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpspw ")
               If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
                 time=1
               EndIf
             EndIf
         Case #GADGET_BUTTON_haste:
             If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!hphst XX")
+              Command("!hphst")
             Else
               SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hphst ")
               If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
                 time=1
               EndIf
             EndIf
-        Case #GADGET_BUTTON_boostarmy:
+        Case #GADGET_BUTTON_armorturret:
             If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!hparm XX")
+              Command("!hpart")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpart ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+        Case #GADGET_BUTTON_army:
+            If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hparm")
             Else
               SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hparm ")
               If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
                 time=1
               EndIf
             EndIf
-        Case #GADGET_BUTTON_boostmeditate:
+        Case #GADGET_BUTTON_luck:
             If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!hpmdt XX")
+              Command("!hplck")
             Else
-              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpmdt ")
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hplck ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+        Case #GADGET_BUTTON_unburrower:
+            If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hpunb")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpunb ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+        Case #GADGET_BUTTON_wisdom:
+            If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hpwis")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hpwis ")
               If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
                 time=1
               EndIf
@@ -1778,7 +1833,7 @@ Repeat
          
         Case #GADGET_BUTTON_boostpower:
           If GetGadgetState(#GADGET_BUTTON_boostpower)=1
-            SetGadgetState(#GADGET_BUTTON_boostrange,0)
+            SetGadgetState(#GADGET_BUTTON_boostbubble,0)
             SetGadgetState(#GADGET_BUTTON_boostdamage,0)
             Drawbutton("1",0,2,#GADGET_BUTTON_1,19,15)
             Drawbutton("2",0,2,#GADGET_BUTTON_2,19,15)
@@ -1806,8 +1861,8 @@ Repeat
             Drawbutton("11",0,3,#GADGET_BUTTON_11,16,15)
             Drawbutton("12",0,3,#GADGET_BUTTON_12,16,15)
           EndIf
-        Case #GADGET_BUTTON_boostrange:
-          If GetGadgetState(#GADGET_BUTTON_boostrange)=1
+        Case #GADGET_BUTTON_boostbubble:
+          If GetGadgetState(#GADGET_BUTTON_boostbubble)=1
             SetGadgetState(#GADGET_BUTTON_boostpower,0)
             SetGadgetState(#GADGET_BUTTON_boostdamage,0)
             Drawbutton("1",0,1,#GADGET_BUTTON_1,19,15)
@@ -1839,7 +1894,7 @@ Repeat
         Case #GADGET_BUTTON_boostdamage:
           If GetGadgetState(#GADGET_BUTTON_boostdamage)=1
             SetGadgetState(#GADGET_BUTTON_boostpower,0)
-            SetGadgetState(#GADGET_BUTTON_boostrange,0)
+            SetGadgetState(#GADGET_BUTTON_boostbubble,0)
             Drawbutton("1",0,0,#GADGET_BUTTON_1,19,15)
             Drawbutton("2",0,0,#GADGET_BUTTON_2,19,15)
             Drawbutton("3",0,0,#GADGET_BUTTON_3,19,15)
@@ -2089,7 +2144,7 @@ Repeat
         SetGadgetState(#GADGET_BUTTON_priestcast,0)
         SetGadgetState(#GADGET_BUTTON_boostdamage,0)
         SetGadgetState(#GADGET_BUTTON_boostpower,0)
-        SetGadgetState(#GADGET_BUTTON_boostrange,0)
+        SetGadgetState(#GADGET_BUTTON_boostbubble,0)
         Drawbutton("1",0,3,#GADGET_BUTTON_1,19,15)
         Drawbutton("2",0,3,#GADGET_BUTTON_2,19,15)
         Drawbutton("3",0,3,#GADGET_BUTTON_3,19,15)
@@ -2119,8 +2174,8 @@ For i.i=0 To loadedprofiles-1
 Next
 End
 ; IDE Options = PureBasic 5.45 LTS (Windows - x64)
-; CursorPosition = 1084
-; FirstLine = 771
+; CursorPosition = 1742
+; FirstLine = 1529
 ; Folding = AA5
 ; EnableUnicode
 ; EnableThread
