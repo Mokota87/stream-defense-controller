@@ -96,7 +96,11 @@ There's also a checkbox which will activate posting all commands in this text fi
 * Added **Altar** button.
 * Added missing options to the **?** button: !gems, !specs, !essence and !spells
 * Updated the shop window to the new class system and implemented all new classes.
+* Added tooltips for the requirements of the classes in the shop window.
+* Updated the purchasable priest spells.
 * Replaced the obsolete **upgrade gem** and **switch gem** buttons with buttons to socket specific ones.
+* Updated target window (only the sorting option).
+* Updated class selection window.
 
 # Pure Pasic Version
 

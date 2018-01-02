@@ -158,21 +158,8 @@ Enumeration ;GADGETS
   #GADGET_BUTTON_firemage
   #GADGET_BUTTON_rogue
   #GADGET_BUTTON_bard
-  #GADGET_BUTTON_ninja
-  #GADGET_BUTTON_necromancer
-  #GADGET_BUTTON_sniper
-  #GADGET_BUTTON_trickster
-  #GADGET_BUTTON_stormmage
-  #GADGET_BUTTON_mimic
-  #GADGET_BUTTON_deathdealer
-  #GADGET_BUTTON_falconeer
-  #GADGET_BUTTON_pyromancer
-  #GADGET_BUTTON_assasin
   #GADGET_BUTTON_highpriest
-  #GADGET_BUTTON_bombermage
-  #GADGET_BUTTON_scout
-  #GADGET_BUTTON_lightningmage
-  
+    
   ;Shop
   #GADGET_FRAME_classes
   #GADGET_FRAME_highpriestspells
@@ -203,14 +190,13 @@ Enumeration ;GADGETS
   #GADGET_BUTTON_buymistrel
   #GADGET_BUTTON_buymimic
   #GADGET_BUTTON_buyscout
-   
-  #GADGET_BUTTON_buyhaste
-  #GADGET_BUTTON_buyfocus
-  #GADGET_BUTTON_buypower
-  #GADGET_BUTTON_buyshield
-  #GADGET_BUTTON_buymeditate
-  #GADGET_BUTTON_buyarm
   
+  #GADGET_BUTTON_buypriestarmorturret
+  #GADGET_BUTTON_buypriestarmy
+  #GADGET_BUTTON_buypriestluck
+  #GADGET_BUTTON_buypriestunburrower
+  #GADGET_BUTTON_buypriestwisdom
+    
   #GADGET_BUTTON_socketruby
   #GADGET_BUTTON_socketemerald
   #GADGET_BUTTON_socketcitrine
@@ -236,14 +222,19 @@ Enumeration ;GADGETS
   
   ;Target
   #GADGET_FRAME_mode
-  #GADGET_BUTTON_targetdefault
   #GADGET_BUTTON_targetfront
+  #GADGET_BUTTON_targetback
   #GADGET_BUTTON_targetclosest
-  #GADGET_BUTTON_targethighest
-  #GADGET_BUTTON_targetlowest
-  #GADGET_FRAME_lock
-  #GADGET_BUTTON_targetlockon
-  #GADGET_BUTTON_targetlockoff
+  #GADGET_BUTTON_targetfarthest
+  #GADGET_BUTTON_targetleasthealth
+  #GADGET_BUTTON_targetmosthealth
+  #GADGET_BUTTON_targetleastmaxhealth
+  #GADGET_BUTTON_targetmostmaxhealth
+  #GADGET_BUTTON_targetleastarmor
+  #GADGET_BUTTON_targetmostarmor
+  #GADGET_BUTTON_targetaoe
+  #GADGET_BUTTON_targetquickest
+  #GADGET_BUTTON_targetslowest
   
   ;Profiles
   #GADGET_PROFILES_CANVAS_header
@@ -614,48 +605,35 @@ EndIf
 ;CLASS WINDOW
 ;******************************************
 If Val(config(2))=0
-  OpenWindow(#WINDOW_classes,0,0,775,110,"Classes ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
+  OpenWindow(#WINDOW_classes,0,0,445,57,"Classes ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
 Else
-   OpenWindow(#WINDOW_classes,Val(config(2)),Val(config(3)),775,110,"Classes ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
+   OpenWindow(#WINDOW_classes,Val(config(2)),Val(config(3)),445,57,"Classes ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
 EndIf
 StickyWindow(#WINDOW_classes,1)
 HideWindow(#WINDOW_classes,1)
 
-CanvasGadget(#GADGET_BUTTON_firemage,5,5,105,22)
-CanvasGadget(#GADGET_BUTTON_pyromancer,5,31,105,22)
-CanvasGadget(#GADGET_BUTTON_bombermage,5,57,105,22)
-CanvasGadget(#GADGET_BUTTON_lightningmage,5,83,105,22)
-CanvasGadget(#GADGET_BUTTON_archer,115,5,105,22)
-CanvasGadget(#GADGET_BUTTON_sniper,115,31,105,22)
-CanvasGadget(#GADGET_BUTTON_falconeer,115,57,105,22)
-CanvasGadget(#GADGET_BUTTON_frostmage,225,5,105,22)
-CanvasGadget(#GADGET_BUTTON_stormmage,225,31,105,22)
-CanvasGadget(#GADGET_BUTTON_trickster,225,57,105,22)
-CanvasGadget(#GADGET_BUTTON_rogue,335,5,105,22)
-CanvasGadget(#GADGET_BUTTON_ninja,335,31,105,22)
-CanvasGadget(#GADGET_BUTTON_assasin,335,57,105,22)
-CanvasGadget(#GADGET_BUTTON_bard,445,5,105,22)
-CanvasGadget(#GADGET_BUTTON_mimic,445,31,105,22)
-CanvasGadget(#GADGET_BUTTON_scout,445,57,105,22)
-CanvasGadget(#GADGET_BUTTON_alchemist,555,5,105,22)
-CanvasGadget(#GADGET_BUTTON_necromancer,555,31,105,22)
-CanvasGadget(#GADGET_BUTTON_deathdealer,555,57,105,22)
+CanvasGadget(#GADGET_BUTTON_archer,5,5,105,22)
+CanvasGadget(#GADGET_BUTTON_frostmage,5,31,105,22)
+CanvasGadget(#GADGET_BUTTON_rogue,115,5,105,22)
+CanvasGadget(#GADGET_BUTTON_alchemist,115,31,105,22)
+CanvasGadget(#GADGET_BUTTON_firemage,225,5,105,22)
+CanvasGadget(#GADGET_BUTTON_bard,225,31,105,22)
 
-CanvasGadget(#GADGET_BUTTON_highpriest,665,5,105,74)
+CanvasGadget(#GADGET_BUTTON_highpriest,335,5,105,48)
 
 
 ;******************************************
 ;SHOP WINDOW
 ;******************************************
 If Val(config(4))=0
-  OpenWindow(#WINDOW_shop,0,0,345,595,"Shop ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
+  OpenWindow(#WINDOW_shop,0,0,365,635,"Shop ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
 Else
-  OpenWindow(#WINDOW_shop,Val(config(4)),Val(config(5)),345,595,"Shop ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
+  OpenWindow(#WINDOW_shop,Val(config(4)),Val(config(5)),365,635,"Shop ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
 EndIf
 StickyWindow(#WINDOW_shop,1)
 HideWindow(#WINDOW_shop,1)
 
-FrameGadget(#GADGET_FRAME_classes,5,5,WindowWidth(#WINDOW_shop)-185,585,"CHANGE SPECS [5000 Gold]")
+FrameGadget(#GADGET_FRAME_classes,5,5,WindowWidth(#WINDOW_shop)-205,625,"CHANGE SPECS [5000 Gold]")
 SetGadgetFont(#GADGET_FRAME_classes,FontID(1))
 y.i=10
 ButtonGadget(#GADGET_BUTTON_buybowman,10,10+y,150,25,"Spec Bowman")
@@ -723,32 +701,31 @@ y+28
 ButtonGadget(#GADGET_BUTTON_buyscout,10,10+y,150,25,"Spec Scout")
 GadgetToolTip(#GADGET_BUTTON_buymimic, "REQUIRES: Bard Rank 15") 
 
-FrameGadget(#GADGET_FRAME_highpriestspells,180,5,WindowWidth(#WINDOW_shop)-185,195,"HIGHPRIEST SPELLS")
+
+FrameGadget(#GADGET_FRAME_highpriestspells,180,5,WindowWidth(#WINDOW_shop)-185,155,"HIGHPRIEST SPELLS")
 SetGadgetFont(#GADGET_FRAME_highpriestspells,FontID(1))
 y=10
 
-ButtonGadget(#GADGET_BUTTON_buyhaste,185,10+y,150,25,"Priest Hastespell [5000g]")
+ButtonGadget(#GADGET_BUTTON_buypriestarmorturret,185,10+y,170,25,"Priest Armor Turret  Spell [5000g]")
 y+28
-ButtonGadget(#GADGET_BUTTON_buyfocus,185,10+y,150,25,"Priest Focusspell [5000g]")
+ButtonGadget(#GADGET_BUTTON_buypriestarmy,185,10+y,170,25,"Priest Army Spell [5000g]")
 y+28
-ButtonGadget(#GADGET_BUTTON_buypower,185,10+y,150,25,"Priest Powerspell [5000g]")
+ButtonGadget(#GADGET_BUTTON_buypriestluck,185,10+y,170,25,"Priest Luck Spell [5000g]")
 y+28
-ButtonGadget(#GADGET_BUTTON_buyshield,185,10+y,150,25,"Priest Shieldspell [5000g]")
+ButtonGadget(#GADGET_BUTTON_buypriestunburrower,185,10+y,170,25,"Priest Unburrower Spell [5000g]")
 y+28
-ButtonGadget(#GADGET_BUTTON_buymeditate,185,10+y,150,25,"Priest Meditatespell [5000g]")
-y+28
-ButtonGadget(#GADGET_BUTTON_buyarm,185,10+y,150,25,"Priest Armyspell [5000g]")
+ButtonGadget(#GADGET_BUTTON_buypriestwisdom,185,10+y,170,25,"Priest Wisdom Spell [5000g]")
 
-FrameGadget(#GADGET_FRAME_gem,180,385,WindowWidth(#WINDOW_shop)-185,75,"GEMS")
+FrameGadget(#GADGET_FRAME_gem,180,503,WindowWidth(#WINDOW_shop)-185,127,"SWITCH GEM [2500g]")
 SetGadgetFont(#GADGET_FRAME_gem,FontID(1))
-y=290
-ButtonGadget(#GADGET_BUTTON_socketruby,185,10+y,150,25,"Socket Ruby")
+y=508
+ButtonGadget(#GADGET_BUTTON_socketruby,185,10+y,170,25,"Socket Ruby")
 y+28
-ButtonGadget(#GADGET_BUTTON_socketemerald,185,10+y,150,25,"Socket Emerald")
+ButtonGadget(#GADGET_BUTTON_socketemerald,185,10+y,170,25,"Socket Emerald")
 y+28
-ButtonGadget(#GADGET_BUTTON_socketcitrine,185,10+y,150,25,"Socket Citrine")
+ButtonGadget(#GADGET_BUTTON_socketcitrine,185,10+y,170,25,"Socket Citrine")
 y+28
-ButtonGadget(#GADGET_BUTTON_socketonyx,185,10+y,150,25,"Socket Onyx")
+ButtonGadget(#GADGET_BUTTON_socketonyx,185,10+y,170,25,"Socket Onyx")
 
 
 ;******************************************
@@ -826,34 +803,42 @@ ProgressBarGadget(#GADGET_PROGRESS_command,5,61,340,15,0,GetGadgetState(#GADGET_
 ;TARGET WINDOW
 ;******************************************
 If Val(config(11))=0
-  OpenWindow(#WINDOW_target,0,0,160,255,"Target ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
+  OpenWindow(#WINDOW_target,0,0,160,390,"Target ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
 Else
-  OpenWindow(#WINDOW_target,Val(config(11)),Val(config(12)),160,255,"Target ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
+  OpenWindow(#WINDOW_target,Val(config(11)),Val(config(12)),160,390,"Target ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
 EndIf
 StickyWindow(#WINDOW_target,1)
 HideWindow(#WINDOW_target,1)
 
-FrameGadget(#GADGET_FRAME_mode,5,5,WindowWidth(#WINDOW_target)-10,165,"TARGET MODE")
+FrameGadget(#GADGET_FRAME_mode,5,5,WindowWidth(#WINDOW_target)-10,382,"TARGET MODE")
 SetGadgetFont(#GADGET_FRAME_mode,FontID(1))
-If loadedprofiles=1
-  ButtonGadget(#GADGET_BUTTON_targetdefault,10,20,140,25,"Target default",#PB_Button_Toggle)
-  ButtonGadget(#GADGET_BUTTON_targetfront,10,50,140,25,"Target front (widest)",#PB_Button_Toggle)
-  ButtonGadget(#GADGET_BUTTON_targetlowest,10,80,140,25,"Target lowest (HP)",#PB_Button_Toggle)
-  ButtonGadget(#GADGET_BUTTON_targethighest,10,110,140,25,"Target highest (HP)",#PB_Button_Toggle)
-  ButtonGadget(#GADGET_BUTTON_targetclosest,10,140,140,25,"Target closest",#PB_Button_Toggle)
-  SetGadgetState(#GADGET_BUTTON_targetdefault,1)
-Else
-  ButtonGadget(#GADGET_BUTTON_targetdefault,10,20,140,25,"Target default")
-  ButtonGadget(#GADGET_BUTTON_targetfront,10,50,140,25,"Target front (widest)")
-  ButtonGadget(#GADGET_BUTTON_targetlowest,10,80,140,25,"Target lowest (HP)")
-  ButtonGadget(#GADGET_BUTTON_targethighest,10,110,140,25,"Target highest (HP)")
-  ButtonGadget(#GADGET_BUTTON_targetclosest,10,140,140,25,"Target closest")
-EndIf
-  
-FrameGadget(#GADGET_FRAME_lock,5,175,WindowWidth(#WINDOW_target)-10,75,"TARGET LOCK")
-SetGadgetFont(#GADGET_FRAME_lock,FontID(1))
-ButtonGadget(#GADGET_BUTTON_targetlockon,10,190,140,25,"Target lock ON")
-ButtonGadget(#GADGET_BUTTON_targetlockoff,10,220,140,25,"Target lock OFF")
+
+y=20
+ButtonGadget(#GADGET_BUTTON_targetfront,10,y,140,25,"Target front")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetback,10,y,140,25,"Target back")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetclosest,10,y,140,25,"Target closest")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetfarthest,10,y,140,25,"Target farthest")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetleasthealth,10,y,140,25,"Target leasthealth")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetmosthealth,10,y,140,25,"Target mosthealth")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetleastmaxhealth,10,y,140,25,"Target least maxhealth")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetmostmaxhealth,10,y,140,25,"Target most maxhealth")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetleastarmor,10,y,140,25,"Target least armor")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetmostarmor,10,y,140,25,"Target most armor")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetaoe,10,y,140,25,"Target AOE")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetquickest,10,y,140,25,"Target quickest")
+y+28
+ButtonGadget(#GADGET_BUTTON_targetslowest,10,y,140,25,"Target slowest")
 
 
 ;******************************************
@@ -1021,14 +1006,6 @@ Procedure Button(nr.s,gadget.i)
   EndIf
 EndProcedure
 
-Procedure targettodefault()
-  SetGadgetState(#GADGET_BUTTON_targetdefault,1)
-  SetGadgetState(#GADGET_BUTTON_targetlowest,0)
-  SetGadgetState(#GADGET_BUTTON_targethighest,0)
-  SetGadgetState(#GADGET_BUTTON_targetclosest,0)
-  SetGadgetState(#GADGET_BUTTON_targetfront,0)
-EndProcedure
-
 Procedure autosend(nix.i)
   While 1=1
     If time >= GetGadgetState(#GADGET_SPIN_Commandautosend)
@@ -1064,7 +1041,6 @@ Procedure Classselsection(command.s,classname.s,gadget.i,red.i,blue.i,green.i,st
         time=1
       EndIf
     EndIf
-    targettodefault()
     If GetGadgetState(#GADGET_CHECKBOX_autoclose)=1
       HideWindow(#WINDOW_classes,1)
       SetGadgetState(#GADGET_BUTTON_classes,0)
@@ -1101,25 +1077,12 @@ Drawbuttonpower(0,6,#GADGET_BUTTON_pd,8,2)
 Drawbuttonaltar(0,18,#GADGET_BUTTON_altar)
 
 Drawbuttonclass("Firemage",0,7,#GADGET_BUTTON_firemage,5,5,210,105,0,99)
-Drawbuttonclass("Pyromancer",0,7,#GADGET_BUTTON_pyromancer,5,5,210,105,0,9)
-Drawbuttonclass("Bombermage",0,7,#GADGET_BUTTON_bombermage,5,5,210,105,0,11)
-Drawbuttonclass("Lightningmage",0,7,#GADGET_BUTTON_lightningmage,5,5,210,105,0,8)
 Drawbuttonclass("Archer",0,7,#GADGET_BUTTON_archer,5,5,150,100,0,99)
-Drawbuttonclass("Sniper",0,7,#GADGET_BUTTON_sniper,5,5,150,100,0,10)
-Drawbuttonclass("Falconeer",0,7,#GADGET_BUTTON_falconeer,5,5,150,100,0,12)
 Drawbuttonclass("Frostmage",0,7,#GADGET_BUTTON_frostmage,5,5,30,180,210,99)
-Drawbuttonclass("Stormmage",0,7,#GADGET_BUTTON_stormmage,5,5,30,180,210,8)
-Drawbuttonclass("Trickster",0,7,#GADGET_BUTTON_trickster,5,5,30,180,210,13)
 Drawbuttonclass("Rogue",0,7,#GADGET_BUTTON_rogue,5,5,210,0,210,99)
-Drawbuttonclass("Ninja",0,7,#GADGET_BUTTON_ninja,5,5,210,0,210,12)
-Drawbuttonclass("Assasin",0,7,#GADGET_BUTTON_assasin,5,5,210,0,210,9)
 Drawbuttonclass("Bard",0,7,#GADGET_BUTTON_bard,5,5,90,90,210,99)
-Drawbuttonclass("Mimic",0,7,#GADGET_BUTTON_mimic,5,5,90,90,210,11)
-Drawbuttonclass("Scout",0,7,#GADGET_BUTTON_scout,5,5,90,90,210,13)
 Drawbuttonclass("Alchemist",0,7,#GADGET_BUTTON_alchemist,5,5,20,130,130,99)
-Drawbuttonclass("Necromancer",0,7,#GADGET_BUTTON_necromancer,5,5,20,130,130,10)
-Drawbuttonclass("Deathdealer",0,7,#GADGET_BUTTON_deathdealer,5,5,20,130,130,12)
-Drawbuttonclass("HIGHPRIEST",0,7,#GADGET_BUTTON_highpriest,20,31,200,200,200,99)
+Drawbuttonclass("HIGHPRIEST",0,7,#GADGET_BUTTON_highpriest,20,23,200,200,200,99)
 
 If loadedprofiles>1
   For i.i=0 To loadedprofiles-1
@@ -1389,9 +1352,6 @@ Repeat
               time=1
             EndIf
           EndIf
-          If loadedprofiles=1
-            targettodefault()
-          EndIf
         Case #GADGET_BUTTON_classes:
             If GetGadgetState(#GADGET_BUTTON_classes)=0
               HideWindow(#WINDOW_classes,1)
@@ -1455,42 +1415,16 @@ Repeat
         ;---------
         Case #GADGET_BUTTON_firemage:
           Classselsection("!firemage","Firemage",EventGadget(),210,105,0,99)
-        Case #GADGET_BUTTON_pyromancer:
-          Classselsection("!pyromancer","Pyromancer",EventGadget(),210,105,0,9)
-        Case #GADGET_BUTTON_bombermage:
-          Classselsection("!bombermage","Bombermage",EventGadget(),210,105,0,11)
-        Case #GADGET_BUTTON_lightningmage:
-          Classselsection("!lightningmage","Lightningmage",EventGadget(),210,105,0,8)
         Case #GADGET_BUTTON_archer:
           Classselsection("!archer","Archer",EventGadget(),160,110,0,99)
-        Case #GADGET_BUTTON_sniper:
-          Classselsection("!sniper","Sniper",EventGadget(),160,110,0,10)
-        Case #GADGET_BUTTON_falconeer:
-          Classselsection("!falconeer","Falconeer",EventGadget(),160,110,0,12)
         Case #GADGET_BUTTON_frostmage:
           Classselsection("!frostmage","Frostmage",EventGadget(),30,180,210,99)
-        Case #GADGET_BUTTON_stormmage:
-          Classselsection("!stormmage","Stormmage",EventGadget(),30,180,210,8)
-        Case #GADGET_BUTTON_trickster:
-          Classselsection("!trickster","Trickster",EventGadget(),30,180,210,13)
         Case #GADGET_BUTTON_rogue:
           Classselsection("!rogue","Rogue",EventGadget(),210,0,210,99)
-        Case #GADGET_BUTTON_ninja:
-          Classselsection("!ninja","Ninja",EventGadget(),210,0,210,12)
-        Case #GADGET_BUTTON_assasin:
-          Classselsection("!assassin","Assasin",EventGadget(),210,0,210,9)
         Case #GADGET_BUTTON_bard:
           Classselsection("!bard","Bard",EventGadget(),120,120,210,99)
-        Case #GADGET_BUTTON_mimic:
-          Classselsection("!mimic","Mimic",EventGadget(),120,120,210,11)
-        Case #GADGET_BUTTON_scout:
-          Classselsection("!scout","Scout",EventGadget(),120,120,210,13)
         Case #GADGET_BUTTON_alchemist:
           Classselsection("!alchemist","Alchemist",EventGadget(),50,160,160,99)
-        Case #GADGET_BUTTON_necromancer:
-          Classselsection("!necromancer","Necromancer",EventGadget(),50,160,160,10)
-        Case #GADGET_BUTTON_deathdealer: 
-          Classselsection("!deathdealer","Deathdealer",EventGadget(),50,160,160,12)
         Case #GADGET_BUTTON_highpriest: 
           If EventType()=#PB_EventType_LeftClick
             If GetGadgetState(#GADGET_CHECKBOX_command)=0
@@ -1501,7 +1435,6 @@ Repeat
                 time=1
               EndIf
             EndIf
-            targettodefault()
             If GetGadgetState(#GADGET_CHECKBOX_autoclose)=1
               HideWindow(#WINDOW_classes,1)
               SetGadgetState(#GADGET_BUTTON_classes,0)
@@ -1739,52 +1672,16 @@ Repeat
               EndIf
             EndIf
             
-        Case #GADGET_BUTTON_buyhaste: 
+        Case #GADGET_BUTTON_buypriestarmorturret: 
           If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!learnhaste")
+              Command("!learnarmor")
             Else
-              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!learnhaste ")
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!learnarmor ")
               If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
                 time=1
               EndIf
             EndIf
-        Case #GADGET_BUTTON_buyfocus: 
-          If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!learnfocus")
-            Else
-              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!learnfocus ")
-              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
-                time=1
-              EndIf
-            EndIf
-        Case #GADGET_BUTTON_buypower: 
-          If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!learnpower")
-            Else
-              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!learnpower ")
-              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
-                time=1
-              EndIf
-            EndIf
-        Case #GADGET_BUTTON_buyshield: 
-          If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!learnshield")
-            Else
-              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!learnshield ")
-              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
-                time=1
-              EndIf
-            EndIf
-        Case #GADGET_BUTTON_buymeditate: 
-          If GetGadgetState(#GADGET_CHECKBOX_command)=0
-              Command("!learnmeditate")
-            Else
-              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!learnmeditate ")
-              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
-                time=1
-              EndIf
-            EndIf
-        Case #GADGET_BUTTON_buyarm: 
+        Case #GADGET_BUTTON_buypriestarmy: 
           If GetGadgetState(#GADGET_CHECKBOX_command)=0
               Command("!learnarmy")
             Else
@@ -1793,6 +1690,34 @@ Repeat
                 time=1
               EndIf
             EndIf
+        Case #GADGET_BUTTON_buypriestluck: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!learnluck")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!learnluck ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+        Case #GADGET_BUTTON_buypriestunburrower: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!learnunburrower")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!learnunburrower ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+        Case #GADGET_BUTTON_buypriestwisdom: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!learnwisdom")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!learnwisdom ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+        
           
         ;PRIESTCAST:
         ;-------------  
@@ -1976,98 +1901,117 @@ Repeat
         ;---------
         Case #GADGET_BUTTON_targetfront:
           If GetGadgetState(#GADGET_CHECKBOX_command)=0
-            Command("!targetfront")
+            Command("!tars=f")
           Else
-            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!targetfront ")
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=f ")
             If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
               time=1
             EndIf
           EndIf
-          If loadedprofiles=1
-          SetGadgetState(#GADGET_BUTTON_targetdefault,0)
-          SetGadgetState(#GADGET_BUTTON_targetlowest,0)
-          SetGadgetState(#GADGET_BUTTON_targethighest,0)
-          SetGadgetState(#GADGET_BUTTON_targetclosest,0)
-          SetGadgetState(#GADGET_BUTTON_targetfront,1)
-          EndIf
-        Case #GADGET_BUTTON_targetdefault:
+        Case #GADGET_BUTTON_targetback:
           If GetGadgetState(#GADGET_CHECKBOX_command)=0
-            Command("!targetdefault")
+            Command("!tars=b")
           Else
-            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!targetdefault ")
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=b ")
             If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
               time=1
             EndIf
-          EndIf
-          If loadedprofiles=1
-            SetGadgetState(#GADGET_BUTTON_targetdefault,1)
-            SetGadgetState(#GADGET_BUTTON_targetlowest,0)
-            SetGadgetState(#GADGET_BUTTON_targethighest,0)
-            SetGadgetState(#GADGET_BUTTON_targetclosest,0)
-            SetGadgetState(#GADGET_BUTTON_targetfront,0)
           EndIf
         Case #GADGET_BUTTON_targetclosest:
           If GetGadgetState(#GADGET_CHECKBOX_command)=0
-            Command("!targetclosest")
+            Command("!tars=c")
           Else
-            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!targetclosest ")
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=c ")
             If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
               time=1
             EndIf
           EndIf
-          If loadedprofiles=1
-            SetGadgetState(#GADGET_BUTTON_targetdefault,0)
-            SetGadgetState(#GADGET_BUTTON_targetlowest,0)
-            SetGadgetState(#GADGET_BUTTON_targethighest,0)
-            SetGadgetState(#GADGET_BUTTON_targetclosest,1)
-            SetGadgetState(#GADGET_BUTTON_targetfront,0)
-          EndIf
-        Case #GADGET_BUTTON_targethighest:  
+        Case #GADGET_BUTTON_targetfarthest:  
           If GetGadgetState(#GADGET_CHECKBOX_command)=0
-            Command("!targethighest")
+            Command("!tars=r")
           Else
-            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!targethighest ")
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=r ")
             If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
               time=1
             EndIf
           EndIf
-          If loadedprofiles=1
-            SetGadgetState(#GADGET_BUTTON_targetdefault,0)
-            SetGadgetState(#GADGET_BUTTON_targetlowest,0)
-            SetGadgetState(#GADGET_BUTTON_targethighest,1)
-            SetGadgetState(#GADGET_BUTTON_targetclosest,0)
-            SetGadgetState(#GADGET_BUTTON_targetfront,0)
-          EndIf
-        Case #GADGET_BUTTON_targetlowest:  
+        Case #GADGET_BUTTON_targetleasthealth:  
           If GetGadgetState(#GADGET_CHECKBOX_command)=0
-            Command("!targetlowest")
+            Command("!tars=l")
           Else
-            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!targetlowest ")
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=l ")
             If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
               time=1
             EndIf
           EndIf
-          If loadedprofiles=1
-            SetGadgetState(#GADGET_BUTTON_targetdefault,0)
-            SetGadgetState(#GADGET_BUTTON_targetlowest,1)
-            SetGadgetState(#GADGET_BUTTON_targethighest,0)
-            SetGadgetState(#GADGET_BUTTON_targetclosest,0)
-            SetGadgetState(#GADGET_BUTTON_targetfront,0)
-          EndIf
-        Case #GADGET_BUTTON_targetlockon:
+        Case #GADGET_BUTTON_targetmosthealth:
           If GetGadgetState(#GADGET_CHECKBOX_command)=0
-            Command("!targetlockon")
+            Command("!tars=h")
           Else
-            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!targetlockon ")
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=h ")
             If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
               time=1
             EndIf
           EndIf
-        Case #GADGET_BUTTON_targetlockoff:
+        Case #GADGET_BUTTON_targetleastmaxhealth:
           If GetGadgetState(#GADGET_CHECKBOX_command)=0
-            Command("!targetlockoff")
+            Command("!tars=x")
           Else
-            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!targetlockoff ")
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=x ")
+            If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+              time=1
+            EndIf
+          EndIf
+        Case #GADGET_BUTTON_targetmostmaxhealth:
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+            Command("!tars=m")
+          Else
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=m ")
+            If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+              time=1
+            EndIf
+          EndIf
+        Case #GADGET_BUTTON_targetleastarmor:
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+            Command("!tars=t")
+          Else
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=t ")
+            If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+              time=1
+            EndIf
+          EndIf
+        Case #GADGET_BUTTON_targetmostarmor:
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+            Command("!tars=a")
+          Else
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=a ")
+            If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+              time=1
+            EndIf
+          EndIf
+        Case #GADGET_BUTTON_targetaoe:
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+            Command("!tars=o")
+          Else
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=o ")
+            If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+              time=1
+            EndIf
+          EndIf
+        Case #GADGET_BUTTON_targetquickest:
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+            Command("!tars=q")
+          Else
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=q ")
+            If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+              time=1
+            EndIf
+          EndIf
+        Case #GADGET_BUTTON_targetslowest:
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+            Command("!tars=s")
+          Else
+            SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!tars=s ")
             If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
               time=1
             EndIf
@@ -2175,9 +2119,9 @@ For i.i=0 To loadedprofiles-1
 Next
 End
 ; IDE Options = PureBasic 5.45 LTS (Windows - x64)
-; CursorPosition = 1731
-; FirstLine = 1422
-; Folding = AAw
+; CursorPosition = 1084
+; FirstLine = 771
+; Folding = AA5
 ; EnableUnicode
 ; EnableThread
 ; EnableXP
