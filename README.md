@@ -3,7 +3,44 @@
 SDC is an interface for the twitch stream game "Stream Defense" (https://www.twitch.tv/archonthewizard)
 It is NOT a bot or anything like that. It only assists you playing the game via buttons instead of typeing the chat commands.
 Neither has the developer of this interface anything to do with the development of the game itself, nor has the developer of the game anything to do with the development of this interface.
-Please visit http://www.se-development.com/ttdc for further explanations.
+
+# Setup and Usage:
+
+* Download the archive.
+* Unzip the archive (for example with winrar).
+* Create a profile
+To do so, enter your twitch username and authentication (visit https://twitchapps.com/tmi/ to get it).
+Then click on the **Add profile** button. Now just doubleclick the profile in the list above to load it.
+You can add multiple profiles to switch between accounts or to play with more than one character/twitch accounts.
+
+
+## CLASS SELECTION:
+Click on the **CLASSES >** button to open the class window.
+Choose the class, you want to play. You can close the window by clicking aggain on the **CLASSES >** window.
+
+
+## GENERAL USAGE:
+Normal class:
+If you don't play as a highpriest, you can now press the buttons **1-12** to choose your tower.
+Press the **TRAIN** button to train and get levels.
+Press the **Power UP** and **Power DOWN** buttons to start and stop the usage of power.
+
+## Highpriest:
+Press the **PRIESTCAST >** button to open the highpriest window.
+Now you can choose between the 3 buttons on the top of the highpriest window to select your buff.
+When one of the buttons is activated, you can use the buttons 1-12 to choose the tower which you want to buff.
+Please be aware: If you want to play another class you have to deactivate the actual active buff button or simply close the
+highpriest window.
+
+## Multibox:
+There are two ways to play with more than one character. For each way you first need a twitch account for each character.
+You also need to create a profile for each twitch-account.
+The first way is to just open SDC multiple times and choose diferent profiles. Then you have an own interface for each account.
+If you dont have multiple monitors the second way is perhaps better for you. You can select multiple profiles by holding CTRL while selecting
+the profiles. Then press "load profiles". Now all accounts are combined in one Interface. But you still can choose between the characters
+which shall chat the next command by selecting/deselecting the buttons at the top of the window.
+
+HAVE FUN!
 
 # Version History
 
