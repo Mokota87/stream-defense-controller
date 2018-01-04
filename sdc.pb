@@ -164,6 +164,7 @@ Enumeration ;GADGETS
   #GADGET_FRAME_classes
   #GADGET_FRAME_highpriestspells
   #GADGET_FRAME_gem
+  #GADGET_FRAME_merc
   
   #GADGET_BUTTON_buybowman
   #GADGET_BUTTON_buysniper
@@ -201,6 +202,15 @@ Enumeration ;GADGETS
   #GADGET_BUTTON_socketemerald
   #GADGET_BUTTON_socketcitrine
   #GADGET_BUTTON_socketonyx
+  
+  #GADGET_BUTTON_mercicelo
+  #GADGET_BUTTON_mercshade
+  #GADGET_BUTTON_mercjubal
+  #GADGET_BUTTON_mercgunnar
+  #GADGET_BUTTON_mercadara
+  #GADGET_BUTTON_mercmoor
+  #GADGET_BUTTON_merccortez
+  #GADGET_BUTTON_mercmolan
   
   ;Priestcast
   #GADGET_FRAME_buffs
@@ -630,14 +640,14 @@ CanvasGadget(#GADGET_BUTTON_highpriest,335,5,105,48)
 ;SHOP WINDOW
 ;******************************************
 If Val(config(4))=0
-  OpenWindow(#WINDOW_shop,0,0,365,635,"Shop ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
+  OpenWindow(#WINDOW_shop,0,0,375,635,"Shop ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_ScreenCentered|#PB_Window_Tool)
 Else
-  OpenWindow(#WINDOW_shop,Val(config(4)),Val(config(5)),365,635,"Shop ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
+  OpenWindow(#WINDOW_shop,Val(config(4)),Val(config(5)),375,635,"Shop ~ "+activeprofile(loadedprofiles-1),#PB_Window_SystemMenu|#PB_Window_Tool)
 EndIf
 StickyWindow(#WINDOW_shop,1)
 HideWindow(#WINDOW_shop,1)
 
-FrameGadget(#GADGET_FRAME_classes,5,5,WindowWidth(#WINDOW_shop)-205,625,"CHANGE SPECS [5000 Gold]")
+FrameGadget(#GADGET_FRAME_classes,5,5,WindowWidth(#WINDOW_shop)-215,625,"CHANGE SPECS [5000 Gold]")
 SetGadgetFont(#GADGET_FRAME_classes,FontID(1))
 y.i=10
 ButtonGadget(#GADGET_BUTTON_buybowman,10,10+y,150,25,"Spec Bowman")
@@ -703,33 +713,49 @@ ButtonGadget(#GADGET_BUTTON_buymimic,10,10+y,150,25,"Spec Mimic")
 GadgetToolTip(#GADGET_BUTTON_buymimic, "REQUIRES: Archer Rank 5, Rogue Rank 5, Firemage Rank 5, Frostmage Rank 5, Alchemist Rank 5") 
 y+28
 ButtonGadget(#GADGET_BUTTON_buyscout,10,10+y,150,25,"Spec Scout")
-GadgetToolTip(#GADGET_BUTTON_buymimic, "REQUIRES: Bard Rank 15") 
+GadgetToolTip(#GADGET_BUTTON_buyscout, "REQUIRES: Bard Rank 15") 
 
 
 FrameGadget(#GADGET_FRAME_highpriestspells,180,5,WindowWidth(#WINDOW_shop)-185,155,"HIGHPRIEST SPELLS")
 SetGadgetFont(#GADGET_FRAME_highpriestspells,FontID(1))
 y=10
+ButtonGadget(#GADGET_BUTTON_buypriestarmorturret,185,10+y,180,25,"Armor Turret  Spell [5000g]")
+y+28
+ButtonGadget(#GADGET_BUTTON_buypriestarmy,185,10+y,180,25,"Army Spell [5000g]")
+y+28
+ButtonGadget(#GADGET_BUTTON_buypriestluck,185,10+y,180,25,"Luck Spell [5000g]")
+y+28
+ButtonGadget(#GADGET_BUTTON_buypriestunburrower,185,10+y,180,25,"Unburrower Spell [5000g]")
+y+28
+ButtonGadget(#GADGET_BUTTON_buypriestwisdom,185,10+y,180,25,"Wisdom Spell [5000g]")
 
-ButtonGadget(#GADGET_BUTTON_buypriestarmorturret,185,10+y,170,25,"Priest Armor Turret  Spell [5000g]")
+
+FrameGadget(#GADGET_FRAME_merc,180,185,WindowWidth(#WINDOW_shop)-185,131,"HIRE MERCENARY [1500g]")
+SetGadgetFont(#GADGET_FRAME_merc,FontID(1))
+y=190
+ButtonGadget(#GADGET_BUTTON_mercicelo,185,10+y,87,25,"Icelo (Icemage)")
+ButtonGadget(#GADGET_BUTTON_mercshade,278,10+y,87,25,"Shade (Rogue)")
 y+28
-ButtonGadget(#GADGET_BUTTON_buypriestarmy,185,10+y,170,25,"Priest Army Spell [5000g]")
+ButtonGadget(#GADGET_BUTTON_mercjubal,185,10+y,87,25,"Jubal (Bard)")
+ButtonGadget(#GADGET_BUTTON_mercgunnar,278,10+y,87,25,"Gunnar (Archer)")
 y+28
-ButtonGadget(#GADGET_BUTTON_buypriestluck,185,10+y,170,25,"Priest Luck Spell [5000g]")
+ButtonGadget(#GADGET_BUTTON_mercadara,185,10+y,87,25,"Adara (Firemage)")
+ButtonGadget(#GADGET_BUTTON_mercmoor,278,10+y,87,25,"Moor (Alchemist)")
 y+28
-ButtonGadget(#GADGET_BUTTON_buypriestunburrower,185,10+y,170,25,"Priest Unburrower Spell [5000g]")
-y+28
-ButtonGadget(#GADGET_BUTTON_buypriestwisdom,185,10+y,170,25,"Priest Wisdom Spell [5000g]")
+ButtonGadget(#GADGET_BUTTON_merccortez,185,10+y,87,25,"Cortez (Bard)")
+ButtonGadget(#GADGET_BUTTON_mercmolan,278,10+y,87,25,"Molan (Icemage)")
+
 
 FrameGadget(#GADGET_FRAME_gem,180,503,WindowWidth(#WINDOW_shop)-185,127,"SWITCH GEM [2500g]")
 SetGadgetFont(#GADGET_FRAME_gem,FontID(1))
 y=508
-ButtonGadget(#GADGET_BUTTON_socketruby,185,10+y,170,25,"Socket Ruby")
+ButtonGadget(#GADGET_BUTTON_socketruby,185,10+y,180,25,"Socket Ruby")
 y+28
-ButtonGadget(#GADGET_BUTTON_socketemerald,185,10+y,170,25,"Socket Emerald")
+ButtonGadget(#GADGET_BUTTON_socketemerald,185,10+y,180,25,"Socket Emerald")
 y+28
-ButtonGadget(#GADGET_BUTTON_socketcitrine,185,10+y,170,25,"Socket Citrine")
+ButtonGadget(#GADGET_BUTTON_socketcitrine,185,10+y,180,25,"Socket Citrine")
 y+28
-ButtonGadget(#GADGET_BUTTON_socketonyx,185,10+y,170,25,"Socket Onyx")
+ButtonGadget(#GADGET_BUTTON_socketonyx,185,10+y,180,25,"Socket Onyx")
 
 
 ;******************************************
@@ -763,7 +789,7 @@ ButtonGadget(#GADGET_BUTTON_powerooze,10,y,245,25,"Power Ooze [55 Mana + 1 Orb]"
 y+28
 ButtonGadget(#GADGET_BUTTON_haste,10,y,245,25,"Haste [30 Mana + 0-3 Orbs]")
 y+28
-ButtonGadget(#GADGET_BUTTON_armorturret,10,y,245,25,"Armor Turret [40 Mana]")
+ButtonGadget(#GADGET_BUTTON_armorturret,10,y,245,25,"Armor Turret [20 Mana]")
 y+28
 ButtonGadget(#GADGET_BUTTON_army,10,y,245,25,"Army [50 Mana + 3 Orbs]")
 y+28
@@ -973,14 +999,13 @@ EndProcedure
 
 Procedure Button(nr.s,gadget.i)
   If EventType()=#PB_EventType_LeftClick
-    
     If GetGadgetState(#GADGET_CHECKBOX_command)=0
       If GetGadgetState(#GADGET_BUTTON_boostdamage)=1
-        Command("!hpstr"+nr+" XX")
+        Command("!hpstr"+nr)
       ElseIf GetGadgetState(#GADGET_BUTTON_boostbubble)=1
-        Command("!hpslw"+nr+" XX")
+        Command("!hpslw"+nr)
       ElseIf GetGadgetState(#GADGET_BUTTON_boostpower)=1
-        Command("!hppwr"+nr+" XX")
+        Command("!hppwr"+nr)
       Else
         Command("!"+nr)
       EndIf
@@ -998,8 +1023,15 @@ Procedure Button(nr.s,gadget.i)
         time=1
       EndIf
     EndIf
-      
-      
+  ElseIf EventType()=#PB_EventType_RightClick
+    If GetGadgetState(#GADGET_CHECKBOX_command)=0
+      Command("!m"+nr)
+    Else
+      SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!m"+nr+" ")
+      If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+        time=1
+      EndIf
+    EndIf
   ElseIf EventType()=#PB_EventType_MouseEnter
     nr = RemoveString(nr, ".")
     If GetGadgetState(#GADGET_BUTTON_boostdamage)=1
@@ -1254,7 +1286,7 @@ Repeat
           
           
         Case 20:
-          Command("/w ttdbot !gold")
+          Command("!gold")
         Case 21:
           Command("/w ttdbot !gems")
         Case 22:
@@ -1307,6 +1339,16 @@ Repeat
               EndIf
             EndIf
           EndIf
+          If EventType()=#PB_EventType_RightClick
+            If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!mtrain")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!mtrain ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+          EndIf
           If EventType()=#PB_EventType_MouseEnter
             Drawbuttontrain(1,4,#GADGET_BUTTON_train,19,12)
           ElseIf EventType()=#PB_EventType_MouseLeave
@@ -1318,6 +1360,16 @@ Repeat
               Command("!a")
             Else
               SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!a ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+          EndIf
+          If EventType()=#PB_EventType_RightClick
+            If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!ma")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!ma ")
               If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
                 time=1
               EndIf
@@ -1339,6 +1391,17 @@ Repeat
               EndIf
             EndIf
           EndIf
+          If EventType()=#PB_EventType_RightClick
+            If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!mp")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!mp ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+          EndIf
+          
           If EventType()=#PB_EventType_MouseEnter
             Drawbuttonpower(1,5,#GADGET_BUTTON_p,8,3)
           ElseIf EventType()=#PB_EventType_MouseLeave
@@ -1350,6 +1413,16 @@ Repeat
               Command("!pd")
             Else
               SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!pd ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+          EndIf
+          If EventType()=#PB_EventType_RightClick
+            If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!mpd")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!mpd ")
               If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
                 time=1
               EndIf
@@ -1460,9 +1533,9 @@ Repeat
             EndIf
           EndIf
           If EventType()=#PB_EventType_MouseEnter
-            Drawbuttonclass("HIGHPRIEST",1,7,#GADGET_BUTTON_highpriest,19,31,200,200,200,99)
+            Drawbuttonclass("HIGHPRIEST",1,7,#GADGET_BUTTON_highpriest,19,19,200,200,200,99)
           ElseIf EventType()=#PB_EventType_MouseLeave
-            Drawbuttonclass("HIGHPRIEST",0,7,#GADGET_BUTTON_highpriest,20,31,200,200,200,99)
+            Drawbuttonclass("HIGHPRIEST",0,7,#GADGET_BUTTON_highpriest,20,19,200,200,200,99)
           EndIf
           
           
@@ -1736,8 +1809,81 @@ Repeat
                 time=1
               EndIf
             EndIf
-        
-          
+            
+        Case #GADGET_BUTTON_mercicelo: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hireicelo")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hireicelo ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+         Case #GADGET_BUTTON_mercshade: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hireshade")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hireshade ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+         Case #GADGET_BUTTON_mercjubal: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hirejubal")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hirejubal ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+         Case #GADGET_BUTTON_mercgunnar: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hiregunnar")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hiregunnar ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+         Case #GADGET_BUTTON_mercadara: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hireadara")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hireadara ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+         Case #GADGET_BUTTON_mercmoor: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hiremoor")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hiremoor ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+         Case #GADGET_BUTTON_merccortez: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hirecortez")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hirecortez ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+         Case #GADGET_BUTTON_mercmolan: 
+          If GetGadgetState(#GADGET_CHECKBOX_command)=0
+              Command("!hiremolan")
+            Else
+              SetGadgetText(#GADGET_STRING_Command, GetGadgetText(#GADGET_STRING_Command)+"!hiremolan ")
+              If GetGadgetState(#GADGET_CHECKBOX_Commandautosend)=1
+                time=1
+              EndIf
+            EndIf
+
+
         ;PRIESTCAST:
         ;-------------  
         Case #GADGET_BUTTON_enlighten:
@@ -2174,11 +2320,11 @@ For i.i=0 To loadedprofiles-1
 Next
 End
 ; IDE Options = PureBasic 5.45 LTS (Windows - x64)
-; CursorPosition = 1742
-; FirstLine = 1529
+; CursorPosition = 744
+; FirstLine = 620
 ; Folding = AA5
 ; EnableUnicode
 ; EnableThread
 ; EnableXP
 ; UseIcon = icon.ico
-; Executable = fertig\v.1.05\SDC\SDC.exe
+; Executable = ..\..\SDC.exe
