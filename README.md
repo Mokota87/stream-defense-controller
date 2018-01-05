@@ -1,4 +1,4 @@
-# stream-defense-controller
+# Stream-Defense-Controller
 
 ![Screenshot](http://web198.server-drome.de/bilder/ttdc-screen1.png)
 SDC is an interface for the twitch stream game "Stream Defense" (https://www.twitch.tv/archonthewizard)
@@ -9,6 +9,7 @@ Neither has the developer of this interface anything to do with the development 
 
 * Download the archive.
 * Unzip the archive (for example with winrar).
+* Start SDC.exe
 * Create a profile
 To do so, enter your twitch username and authentication (visit https://twitchapps.com/tmi/ to get it).
 Then click on the **Add profile** button. Now just doubleclick the profile in the list above to load it.
@@ -23,27 +24,50 @@ Choose the class, you want to play. You can close the window by clicking aggain 
 ## GENERAL USAGE:
 Normal class:
 If you don't play as a highpriest, you can now press the buttons **1-12** to choose your tower.
-Press the **TRAIN** button to train and get levels.
+Press the **TRAIN** button to train and gain levels.
 Press the **Power UP** and **Power DOWN** buttons to start and stop the usage of power.
+Press the **Altar** button to go to the altar (effect of the altar depends on the map).
+
 
 ## Highpriest:
 Press the **PRIESTCAST >** button to open the highpriest window.
 Now you can choose between the 3 buttons on the top of the highpriest window to select your buff.
 When one of the buttons is activated, you can use the buttons 1-12 to choose the tower which you want to buff.
 Please be aware: If you want to play another class you have to deactivate the actual active buff button or simply close the
-highpriest window.
+highpriest window. You can also cast overall spells which are effecting all towers with this window.
+Some of the spells you first need to unlock in the **Shop** window.
+
+
+## Shop Window:
+In the **Shop** window, you can unlock/buy specs for the different classes, spells for the highpriest and you can switch between your gems.
+Beside that, you can hire a merchenary.
+The requirements are shown in a tooltip, when you hover the mouse above the buttons.
+
+
+## Merchenary: (Next Version of SDC)
+When you hired a merchenary, he/she will follow your main character automatically. However, you can type **!munfollow** to stop him/her to do so.
+Then you still can controll your main character as usual with leftclick on the buttons and you mercenary by rightclick. To let
+your merc follow you aggain, type **!mfollow** in the chat.
+
 
 ## Multibox:
 There are two ways to play with more than one character. For each way you first need a twitch account for each character.
 You also need to create a profile for each twitch-account.
-The first way is to just open SDC multiple times and choose diferent profiles. Then you have an own interface for each account.
+The first way is to just open SDC multiple times and choose different profiles. Then you have an own interface for each account.
 If you dont have multiple monitors the second way is perhaps better for you. You can select multiple profiles by holding CTRL while selecting
 the profiles. Then press "load profiles". Now all accounts are combined in one Interface. But you still can choose between the characters
-which shall chat the next command by selecting/deselecting the buttons at the top of the window.
+which shall chat the next command by selecting/deselecting the tabs at the top of the window.
+
+
+## Shortkeys:
+If you use the highpriest, you can use the 1,2 and 3 key to switch between your towerbuff spells.
+
 
 HAVE FUN!
 
+
 # Version History
+
 
 ## v.1.0:
 * Main build
@@ -103,6 +127,11 @@ There's also a checkbox which will activate posting all commands in this text fi
 * Updated target window (only the sorting option).
 * Updated class selection window.
 * Updated the spell window and included all new spells.
+
+## v.1.07: (work in progress)
+* Fixed bug in the scout-tooltip.
+* Added mercenarys to the shop window.
+* Added the controlling of mercenarys with the right mousebutton.
 
 # Pure Pasic Version
 
